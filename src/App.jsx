@@ -1,33 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { Bvh, Environment, OrbitControls, Stars } from "@react-three/drei"
+import Asteroids from "./Asteroids"
+import { Canvas } from "@react-three/fiber"
+import Effects from "./Effects"
+import { useControls } from "leva"
 function App() {
-  const [count, setCount] = useState(0)
-
+  const {sunColor} = useControls({
+    sunColor: {value: '#80510b', label: 'sunColor'}
+  })
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Canvas camera={{ position: [0, 0, 30], fov: 70 }}>
+        <color attach="background" args={["#000009"]} />
+        <ambientLight intensity={0.1} />
+        <directionalLight position={[10, 10, -200]} intensity={50} color={sunColor} />
+        <Stars />
+        <Bvh>
+          <Asteroids />
+        </Bvh>
+        <OrbitControls />
+        <Effects />
+      </Canvas>
     </>
   )
 }
