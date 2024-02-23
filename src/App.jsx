@@ -3,6 +3,7 @@ import Asteroids from "./Asteroids"
 import { Canvas } from "@react-three/fiber"
 import Effects from "./Effects"
 import { useControls } from "leva"
+import NektoFlareEffect from "./NektoFlareEffect"
 function App() {
   const {sunColor} = useControls({
     sunColor: {value: '#80510b', label: 'sunColor'}
@@ -14,11 +15,12 @@ function App() {
         <ambientLight intensity={0.1} />
         <directionalLight position={[10, 10, -200]} intensity={50} color={sunColor} />
         <Stars />
-        <Bvh>
+        {/* <Bvh>
           <Asteroids />
-        </Bvh>
+        </Bvh> */}
         <OrbitControls />
-        <Effects />
+        {/* <Effects /> */}
+        <NektoFlareEffect />
       </Canvas>
     </>
   )
