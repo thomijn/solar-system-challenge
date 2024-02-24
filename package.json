@@ -18,7 +18,8 @@
     "postprocessing": "^6.34.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "three": "^0.161.0"
+    "three": "^0.161.0",
+    "three-nebula": "^10.0.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",
