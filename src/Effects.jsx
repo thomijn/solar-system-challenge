@@ -21,7 +21,7 @@ const Effects = () => {
         enabled: { value: true, label: "enabled?" },
         opacity: { value: 0.1, min: 0.0, max: 1.0, label: "opacity" },
         position: {
-          value: { x: 50, y: 6, z: -160 },
+          value: { x: 50, y: 16, z: -160 },
           step: 1,
           label: "position",
         },
@@ -117,13 +117,17 @@ const Effects = () => {
 
   return (
     <EffectComposer
-    renderPriority={12}
-    multisampling={1}
-      resolution={[1024, 1024]}>
+      renderPriority={12}
+      multisampling={1}
+      resolution={[1024, 1024]}
+    >
       <LensFlare {...lensFlareProps} />
-      <Vignette eskil={false} offset={0.1} darkness={1.1}
+      <Vignette
+        eskil={false}
+        offset={0.1}
+        darkness={1.1}
         blendFunction={BlendFunction.NORMAL}
-        />
+      />
       <Bloom
         mipmapBlur
         radius="0.7"

@@ -14,12 +14,15 @@
     "@react-three/fiber": "^8.15.16",
     "@react-three/postprocessing": "^2.16.0",
     "@types/three": "^0.161.2",
+    "framer-motion": "^11.0.6",
+    "gsap": "^3.12.5",
     "leva": "^0.9.35",
     "postprocessing": "^6.34.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "three": "^0.161.0",
-    "three-nebula": "^10.0.3"
+    "three-nebula": "^10.0.3",
+    "use-sound": "^4.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",

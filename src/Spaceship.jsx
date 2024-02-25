@@ -121,6 +121,7 @@ export default function Model({ ...props }) {
       >
         <primitive object={nodes.mixamorigHips} />
         <skinnedMesh
+          frustumCulled={false}
           name="LOD_0"
           geometry={nodes.LOD_0.geometry}
           material={nodes.LOD_0.material}

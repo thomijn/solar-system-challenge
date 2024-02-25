@@ -8,6 +8,7 @@ import System, {
 import * as THREE from "three";
 import React from "react";
 import particlesJson from "./particles.json";
+import useSound from 'use-sound';
 
 const createZone = () => {
   const zone = new BoxZone(80);
@@ -40,9 +41,10 @@ function Particles() {
         nebula.emitters[0].addBehaviours([new CrossZone(zone, "bound")]);
         OBJ.scale.set(0.06, 0.06, 0.06);
         OBJ.position.set(1.2, 0, 25);
-
+      
         scene.add(OBJ);
-
+      
+      
         // createDebugger({
         //   THREE,
         //   system: nebula,
