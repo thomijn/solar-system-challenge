@@ -13,7 +13,6 @@ import Asteroids from "./Asteroids";
 import { Canvas } from "@react-three/fiber";
 import Effects from "./Effects";
 import { Leva, useControls } from "leva";
-import NektoFlareEffect from "./NektoFlareEffect";
 import Model from "./Spaceship";
 import CameraControls from "./CameraControls";
 import * as THREE from "three";
@@ -29,7 +28,9 @@ function App() {
     <>
       <Canvas
         dpr={[1, 2]}
-        camera={{ position: [0, 0, 30], fov: isMobile ? 70 : 55 }}>
+        camera={{ position: [0, 0, 30], fov: isMobile ? 70 : 55 }}
+      >
+        <color attach="background" args={["#000009"]} />
         <Effects />
         {/* <Stats /> */}
         <Stars />
@@ -48,7 +49,6 @@ function App() {
 }
 
 const Window = () => {
-
   const config = useControls({
     meshPhysicalMaterial: false,
     transmissionSampler: false,

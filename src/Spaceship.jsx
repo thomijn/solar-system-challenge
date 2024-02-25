@@ -96,12 +96,13 @@ export default function Model({ ...props }) {
       </mesh>
       <mesh
         name="emission"
+        scale={1}
         geometry={nodes.emission.geometry}
         material={nodes.emission.material}
       >
-        <meshBasicMaterial color={"#ffcfcf"} />
+        <meshBasicMaterial color={"#ffe6e6"} />
       </mesh>
-      <mesh geometry={nodes.emission.geometry}>
+      <mesh  geometry={nodes.emission.geometry}>
         <FakeGlowMaterial {...glowControls} />
       </mesh>
       <mesh

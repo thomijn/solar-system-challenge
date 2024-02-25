@@ -127,8 +127,8 @@ const Effects = () => {
       <Bloom
         mipmapBlur
         radius="0.7"
-        luminanceThreshold="0.95"
-        intensity="2"
+        luminanceThreshold="0.97"
+        intensity="1.5"
         levels="4"
       />
     </EffectComposer>
