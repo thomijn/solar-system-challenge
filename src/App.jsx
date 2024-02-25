@@ -27,26 +27,20 @@ function App() {
     <>
       <Canvas
         dpr={[1, 2]}
-        gl={{ stencil: true }}
         camera={{ position: [0, 0, 30], fov: 55 }}>
-        <color attach="background" args={["#000009"]} />
-        {/* <directionalLight
-          position={[10, 10, -200]}
-          intensity={50}
-          color={sunColor}
-        /> */}
+        {/* <color attach="background" args={["#000009"]} /> */}
+        <Effects />
         <Stats />
         <Stars />
         <Bvh>
           <Asteroids />
           <Model position={[0, 0, 25]} />
-          <Window />
+          {/* <Window /> */}
         </Bvh>
         {/* <OrbitControls /> */}
-        <Effects />
         <CameraControls />
         <ParticleSystem />
-        <Leva hidden={true} />
+        <Leva hidden  />
       </Canvas>
     </>
   );

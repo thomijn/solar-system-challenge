@@ -1,6 +1,6 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
-import { Instances, Instance, useGLTF, useMatcapTexture } from "@react-three/drei";
+import { Instances, Instance, useGLTF, useTexture } from "@react-three/drei";
 import { useControls } from "leva";
 
 const randomRange = (min, max) => Math.random() * (max - min) + min;
@@ -65,32 +65,29 @@ function Asteroids() {
     const xPosition = Math.cos(angle) * radius + randomRange(-20, 20);
     const yPosition = Math.sin(angle) * radius + randomRange(-20, 20);
     const zPosition = (Math.random() - 0.5) * 20 - 30; // Adjust z-position as needed
-    const scale = randomRange(minScale, maxScale);
+    const scale = randomRange(minScale* 100, maxScale* 100);
     const rotation = Math.random() * Math.PI;
     return { xPosition, yPosition, zPosition, scale, rotation };
   });
 
-  const { nodes } = useGLTF("/asteroid.glb");
+  const { nodes } = useGLTF("/asteroid-transformed.glb");
 
   useFrame((state, delta) => {
     ref.current.rotation.z = ref.current.rotation.z += delta / 50;
   });
 
-  const [matcap, url] = useMatcapTexture(
-    '515151_DCDCDC_B7B7B7_9B9B9B', 
-    256,
-   )
+  const matCapTexture = useTexture("/matcap.jpg");
 
   return (
     <Instances
       geometry={nodes.Asteroid_Mob_01_Asteroid_01_0.geometry}
       limit={particles.length}
       ref={ref}
-      rotation={[Math.PI * 0.5, 0, 0]}
+      rotation={[Math.PI * 0.5, 0.2, 0]}
       position={[positionX, positionY, positionZ]}
     >
       {/* <mesh  /> */}
-      <meshMatcapMaterial matcap={matcap} />
+      <meshMatcapMaterial matcap={matCapTexture} />
       {particles.map((data, i) => (
         <Asteroid key={i} {...data} />
       ))}

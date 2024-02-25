@@ -10,6 +10,8 @@ import { folder, useControls } from "leva";
 import React from "react";
 import { Color } from "three";
 import LensFlare from "./UltimateLensFlare";
+import * as THREE from "three";
+import { BlendFunction } from "postprocessing";
 
 const Effects = () => {
   const { scene } = useThree();
@@ -114,17 +116,21 @@ const Effects = () => {
   });
 
   return (
-    <EffectComposer multisampling={0} resolution={[1024, 1024]}>
+    <EffectComposer
+    renderPriority={12}
+    multisampling={1}
+      resolution={[1024, 1024]}>
       <LensFlare {...lensFlareProps} />
-      <Vignette eskil={false} offset={0.1} darkness={1.1} />
+      <Vignette eskil={false} offset={0.1} darkness={1.1}
+        blendFunction={BlendFunction.NORMAL}
+        />
       <Bloom
         mipmapBlur
-        radius="0.6"
-        luminanceThreshold="0.95"
+        radius="0.7"
+        luminanceThreshold="0.90"
         intensity="2"
         levels="4"
       />
-      <SMAA />
     </EffectComposer>
   );
 };

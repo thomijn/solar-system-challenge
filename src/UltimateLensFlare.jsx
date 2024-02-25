@@ -160,42 +160,49 @@ function Effects({
 
                 raycaster.setFromCamera(projectedPosition, camera)
                 const intersects = raycaster.intersectObjects(scene.children, true)
-
-                if (intersects[0]) {
-                    if (intersects[0].object.userData && intersects[0].object.userData.lensflare === 'no-occlusion') {
-                        easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 0.0, 0.07, delta)
-                    } else if (intersects[0].object.parent) {
-                        easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 1.0, 0.07, delta)
+                const hasInstanceIntersect = intersects.some((intersect) => intersect.object?.instance)
+                // console.log(hasInstanceIntersect)
+                    if (hasInstanceIntersect) {
+                        easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 1.0, 0.2, delta)
                     } else {
-                        //Check for MeshTransmissionMaterial
-                        console.log(intersects[0].object)
-                        if (intersects[0].object.material.uniforms) {
-                            if (intersects[0].object.material.uniforms._transmission) {
-                                if (intersects[0].object.material.uniforms._transmission.value > 0.2) {
-                                    easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 0.2, 0.07, delta)
-                                }
-                            }
-                        } else {
-                            easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 1.0, 0.07, delta)
-                        }
-
-                        //Check for MeshPhysicalMaterial with transmission setting
-                        if (intersects[0].object.material._transmission && intersects[0].object.material._transmission > 0.2) {
-                            easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 0.2, 0.07, delta)
-                        } else {
-                            easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 1.0, 0.07, delta)
-                        }
-
-                        //Check for OtherMaterials with transparent parameter
-                        if (intersects[0].object.material.transparent) {
-                            easing.damp(lensRef.current.uniforms.get('opacity'), 'value', intersects[0].object.material.opacity, 0.07, delta)
-                        } else {
-                            easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 1.0, 0.07, delta)
-                        }
+                        easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 0.0, 0.2, delta)
                     }
-                } else {
-                    easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 0.0, 0.07, delta)
-                }
+
+                // if (intersects[0]) {
+                //     const intersectionToCheck = intersects[0]
+
+                //     if (intersectionToCheck.object.parent) {
+                //         easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 1.0, 0.07, delta)
+                //     }  else {
+                //         //Check for MeshTransmissionMaterial
+                //         console.log(intersectionToCheck.object)
+                //         if (intersectionToCheck.object.material.uniforms) {
+                //             if (intersectionToCheck.object.material.uniforms._transmission) {
+                //                 if (intersectionToCheck.object.material.uniforms._transmission.value > 0.2) {
+                //                     easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 0.2, 0.07, delta)
+                //                 }
+                //             }
+                //         } else {
+                //             easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 1.0, 0.07, delta)
+                //         }
+
+                //         //Check for MeshPhysicalMaterial with transmission setting
+                //         if (intersectionToCheck.object.material._transmission && intersectionToCheck.object.material._transmission > 0.2) {
+                //             easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 0.2, 0.07, delta)
+                //         } else {
+                //             easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 1.0, 0.07, delta)
+                //         }
+
+                //         //Check for OtherMaterials with transparent parameter
+                //         if (intersectionToCheck.object.material.transparent) {
+                //             easing.damp(lensRef.current.uniforms.get('opacity'), 'value', intersectionToCheck.object.material.opacity, 0.07, delta)
+                //         } else {
+                //             easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 1.0, 0.07, delta)
+                //         }
+                //     }
+                // } else {
+                //     easing.damp(lensRef.current.uniforms.get('opacity'), 'value', 0.0, 0.07, delta)
+                // }
 
                 lensRef.current.uniforms.get('lensPosition').value.x = flarePosition.x
                 lensRef.current.uniforms.get('lensPosition').value.y = flarePosition.y
