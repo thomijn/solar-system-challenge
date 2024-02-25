@@ -24,12 +24,11 @@ export default function Model({ ...props }) {
   const { actions } = useAnimations(animations, group);
   const videoTexture = useVideoTexture("/video-compressed.mp4");
 
-  const bakedTexture = useTexture("/baked.jpg");
+  const bakedTexture = useTexture("/test.jpg");
   const bakedAstronaut = useTexture("/baked-astronaut.jpg");
   bakedAstronaut.channel = 1;
 
   useEffect(() => {
-    console.log(actions);
     actions["Armature|mixamo.com|Layer0"].play();
   }, []);
 

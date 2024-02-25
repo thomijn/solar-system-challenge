@@ -23,24 +23,25 @@ function App() {
     sunColor: { value: "#ffff", label: "sunColor" },
   });
 
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
   return (
     <>
       <Canvas
         dpr={[1, 2]}
-        camera={{ position: [0, 0, 30], fov: 55 }}>
-        {/* <color attach="background" args={["#000009"]} /> */}
+        camera={{ position: [0, 0, 30], fov: isMobile ? 70 : 55 }}>
         <Effects />
-        <Stats />
+        {/* <Stats /> */}
         <Stars />
         <Bvh>
           <Asteroids />
           <Model position={[0, 0, 25]} />
-          {/* <Window /> */}
+          <Window />
         </Bvh>
         {/* <OrbitControls /> */}
         <CameraControls />
         <ParticleSystem />
-        <Leva hidden  />
+        <Leva hidden />
       </Canvas>
     </>
   );
@@ -73,7 +74,7 @@ const Window = () => {
   return (
     <Cylinder
       userData={{ lensflare: "no-occlusion" }}
-      args={[2.1, 2.1, 0.1, 64]}
+      args={[2.15, 2.15, 0.1, 64]}
       position={[-0.1, -0.3, 23.5]}
       rotation={[Math.PI / 2, 0, 0]}
     >

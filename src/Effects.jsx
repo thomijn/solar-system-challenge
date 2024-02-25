@@ -19,7 +19,7 @@ const Effects = () => {
     LensFlare: folder(
       {
         enabled: { value: true, label: "enabled?" },
-        opacity: { value: 0.05, min: 0.0, max: 1.0, label: "opacity" },
+        opacity: { value: 0.1, min: 0.0, max: 1.0, label: "opacity" },
         position: {
           value: { x: 50, y: 6, z: -160 },
           step: 1,
@@ -127,7 +127,7 @@ const Effects = () => {
       <Bloom
         mipmapBlur
         radius="0.7"
-        luminanceThreshold="0.90"
+        luminanceThreshold="0.95"
         intensity="2"
         levels="4"
       />

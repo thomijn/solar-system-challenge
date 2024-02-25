@@ -36,8 +36,6 @@ const NektoFlareEffect = () => {
     });
     lensFlarePass.doTransparency = true;
     composer.addPass(lensFlarePass);
-    console.log(composer)
-    console.log(flares)
     useFrame((state, delta) => {
         composer.render(delta);
     });

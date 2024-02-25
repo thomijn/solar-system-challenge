@@ -35,7 +35,6 @@ function Particles() {
       (sys) => {
         const nebulaRenderer = new SpriteRenderer(OBJ, THREE);
         let nebula = sys.addRenderer(nebulaRenderer);
-        console.log(nebula)
         system.current = nebula;
         const zone = createZone();
         nebula.emitters[0].addBehaviours([new CrossZone(zone, "bound")]);
