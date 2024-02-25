@@ -31,7 +31,7 @@ function Scene() {
         >
             <color attach="background" args={["#000009"]} />
             <Effects />
-            <Stats />
+            {/* <Stats /> */}
             <Stars />
             <Bvh>
                 <Asteroids />
