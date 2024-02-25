@@ -1,8 +1,8 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
-import { Instances, Instance, useGLTF } from "@react-three/drei";
+import { Instances, Instance, useGLTF, useMatcapTexture } from "@react-three/drei";
 import { useControls } from "leva";
-import * as THREE from "three";
+
 const randomRange = (min, max) => Math.random() * (max - min) + min;
 
 function Asteroids() {
@@ -70,26 +70,27 @@ function Asteroids() {
     return { xPosition, yPosition, zPosition, scale, rotation };
   });
 
-  const { nodes, materials } = useGLTF("/asteroid.glb");
+  const { nodes } = useGLTF("/asteroid.glb");
 
   useFrame((state, delta) => {
     ref.current.rotation.z = ref.current.rotation.z += delta / 50;
   });
 
-  materials.Asteroid_01.envMapIntensity = 0.2;
+  const [matcap, url] = useMatcapTexture(
+    '515151_DCDCDC_B7B7B7_9B9B9B', 
+    256,
+   )
 
   return (
     <Instances
       geometry={nodes.Asteroid_Mob_01_Asteroid_01_0.geometry}
-      material={materials.Asteroid_01}
       limit={particles.length}
       ref={ref}
-      castShadow
-      receiveShadow
       rotation={[Math.PI * 0.5, 0, 0]}
       position={[positionX, positionY, positionZ]}
     >
       {/* <mesh  /> */}
+      <meshMatcapMaterial matcap={matcap} />
       {particles.map((data, i) => (
         <Asteroid key={i} {...data} />
       ))}

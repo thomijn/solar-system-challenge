@@ -4,6 +4,7 @@ import {
   Vignette,
   Bloom,
   ToneMapping,
+  SMAA,
 } from "@react-three/postprocessing";
 import { folder, useControls } from "leva";
 import React from "react";
@@ -95,7 +96,7 @@ const Effects = () => {
         }),
         StartBurst: folder({
           starBurst: {
-            value: true,
+            value: false,
             label: "starBurst?",
           },
           haloScale: {
@@ -113,16 +114,17 @@ const Effects = () => {
   });
 
   return (
-    <EffectComposer multisampling={1} resolution={[1024, 1024]}>
+    <EffectComposer multisampling={0} resolution={[1024, 1024]}>
       <LensFlare {...lensFlareProps} />
       <Vignette eskil={false} offset={0.1} darkness={1.1} />
       <Bloom
         mipmapBlur
-        radius="0.9"
+        radius="0.6"
         luminanceThreshold="0.95"
         intensity="2"
         levels="4"
       />
+      <SMAA />
     </EffectComposer>
   );
 };

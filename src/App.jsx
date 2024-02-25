@@ -25,14 +25,16 @@ function App() {
 
   return (
     <>
-      <Canvas camera={{ position: [0, 0, 30], fov: 55 }}>
+      <Canvas
+        dpr={[1, 2]}
+        gl={{ stencil: true }}
+        camera={{ position: [0, 0, 30], fov: 55 }}>
         <color attach="background" args={["#000009"]} />
-        <ambientLight intensity={0.1} />
-        <directionalLight
+        {/* <directionalLight
           position={[10, 10, -200]}
           intensity={50}
           color={sunColor}
-        />
+        /> */}
         <Stats />
         <Stars />
         <Bvh>
@@ -56,8 +58,8 @@ const Window = () => {
     meshPhysicalMaterial: false,
     transmissionSampler: false,
     backside: false,
-    samples: { value: 10, min: 1, max: 32, step: 1 },
-    resolution: { value: 2048, min: 256, max: 2048, step: 256 },
+    samples: { value: 5, min: 1, max: 32, step: 1 },
+    resolution: { value: 1024, min: 256, max: 2048, step: 256 },
     transmission: { value: 1, min: 0, max: 1 },
     roughness: { value: 0.0, min: 0, max: 1, step: 0.01 },
     thickness: { value: 4, min: 0, max: 10, step: 0.01 },

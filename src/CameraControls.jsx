@@ -6,7 +6,7 @@ const CameraControls = () => {
   useFrame((state, delta) => {
     easing.damp3(
       state.camera.position,
-      [-0.4 + state.pointer.x / 2, (-0.5 + state.pointer.y) / 2, 30.5],
+      [-0.4 + state.pointer.x / 2, (-1 + state.pointer.y) / 2, 30.5],
       0.5,
       delta
     );
