@@ -19,6 +19,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import useSound from "use-sound";
 import audioSfx from '/audio.mp3';
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   const [entered, setEntered] = useState(false);
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <>
+      <Analytics />
       <AnimatePresence>
         {!entered && (
           <motion.div transition={{duration:1.2}} exit={{ opacity: 0 }} className="intro">
